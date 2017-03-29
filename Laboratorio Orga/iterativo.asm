@@ -10,7 +10,7 @@ subi $t0, $t0, 1
 j while
 
 segundoWhile:
-bgt, $t1, $zero, cuerpoSegundoWhile
+bgt $t1, $zero, cuerpoSegundoWhile
 j fin
 cuerpoSegundoWhile:
 subi $t0, $t1, 1

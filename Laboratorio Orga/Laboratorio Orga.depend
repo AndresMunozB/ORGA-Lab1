@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1490752616 source:/home/andres/Desarrollo/Proyecto orga lab 1/Laboratorio Orga/funciones.c
+	"estructuras.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1490746304 /home/andres/Desarrollo/Proyecto orga lab 1/Laboratorio Orga/estructuras.h
+
+1490752641 source:/home/andres/Desarrollo/Proyecto orga lab 1/Laboratorio Orga/main.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"estructuras.h"
+	"funciones.h"
+
+1490752524 /home/andres/Desarrollo/Proyecto orga lab 1/Laboratorio Orga/funciones.h
+	"estructuras.h"
+
