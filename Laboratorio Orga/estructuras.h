@@ -13,16 +13,19 @@ typedef struct Instruction{
 
 
 typedef struct Label{
-	char nombre[30];
+	char name[30];
 	int PC;
 }Label;
 
 typedef struct Program{
 
 	int PC;
-	int registers[32];
 	int counterInstruction;
 	int counterLabel;
+	int registers[32];
+	int heapMemory[100000];
+	int stackMemory[100000];
+	char linesControl[10];
 	char nameRegisters[32][7];
 	Instruction instructions[100000];
 	Label labels[50000];

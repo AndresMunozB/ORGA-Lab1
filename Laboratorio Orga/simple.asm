@@ -11,6 +11,7 @@ sub $s3, $zero, $t5
 addi $t1, $zero, 10
 sub $s3, $s3, $t1
 j END
+
 MAYOR:
 add $t6, $t5, $zero 
 mul $t6, $t6, $t6
