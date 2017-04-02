@@ -1,0 +1,204 @@
+addi $t4, $zero, -5:
+RegDst:  0
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  0
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  1
+RegWrite:1
+
+addi $t5, $zero, 15:
+RegDst:  0
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  0
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  1
+RegWrite:1
+
+addi $s0, $zero, 10:
+RegDst:  0
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  0
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  1
+RegWrite:1
+
+add $t5, $t5, $t4:
+RegDst:  1
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  1
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  0
+RegWrite:1
+
+blt $t5, $zero, MENOR:
+RegDst:  x
+Jump:    0
+Branch:  1
+MemRead: 0
+MemToReg:x
+ALUOP1:  0
+ALUOP2:  1
+MemWrite:0
+ALUSrc:  0
+RegWrite:0
+
+bgt $t5, $zero, MAYOR:
+RegDst:  x
+Jump:    0
+Branch:  1
+MemRead: 0
+MemToReg:x
+ALUOP1:  0
+ALUOP2:  1
+MemWrite:0
+ALUSrc:  0
+RegWrite:0
+
+add $t6, $t5, $zero:
+RegDst:  1
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  1
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  0
+RegWrite:1
+
+mul $t6, $t6, $t6:
+RegDst:  1
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  1
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  0
+RegWrite:1
+
+sub $t5, $t5, $t6:
+RegDst:  1
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  1
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  0
+RegWrite:1
+
+j BRANCH:
+RegDst:  x
+Jump:    1
+Branch:  x
+MemRead: 0
+MemToReg:x
+ALUOP1:  x
+ALUOP2:  x
+MemWrite:0
+ALUSrc:  x
+RegWrite:0
+
+blt $t5, $zero, MENOR:
+RegDst:  x
+Jump:    0
+Branch:  1
+MemRead: 0
+MemToReg:x
+ALUOP1:  0
+ALUOP2:  1
+MemWrite:0
+ALUSrc:  0
+RegWrite:0
+
+sub $s3, $zero, $t5:
+RegDst:  1
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  1
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  0
+RegWrite:1
+
+addi $t1, $zero, 10:
+RegDst:  0
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  0
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  1
+RegWrite:1
+
+sub $s3, $s3, $t1:
+RegDst:  1
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  1
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  0
+RegWrite:1
+
+j END:
+RegDst:  x
+Jump:    1
+Branch:  x
+MemRead: 0
+MemToReg:x
+ALUOP1:  x
+ALUOP2:  x
+MemWrite:0
+ALUSrc:  x
+RegWrite:0
+
+div $s2, $s3, $s0:
+RegDst:  1
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  1
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  0
+RegWrite:1
+
+div $s6, $s3, $t5:
+RegDst:  1
+Jump:    0
+Branch:  0
+MemRead: 0
+MemToReg:0
+ALUOP1:  1
+ALUOP2:  0
+MemWrite:0
+ALUSrc:  0
+RegWrite:1
+

@@ -59,3 +59,45 @@
 
 1491187686 c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\fprint.h
 
+1491174027 source:/home/andres/Desarrollo/ORGA-Lab1/Laboratorio Orga/fprint.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"estructuras.h"
+	"funciones.h"
+	"fprint.h"
+
+1491174027 /home/andres/Desarrollo/ORGA-Lab1/Laboratorio Orga/estructuras.h
+
+1491174027 /home/andres/Desarrollo/ORGA-Lab1/Laboratorio Orga/funciones.h
+	"estructuras.h"
+
+1491174027 /home/andres/Desarrollo/ORGA-Lab1/Laboratorio Orga/fprint.h
+
+1491174027 source:/home/andres/Desarrollo/ORGA-Lab1/Laboratorio Orga/funciones.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"estructuras.h"
+	"mips.h"
+	"fprint.h"
+
+1491174027 /home/andres/Desarrollo/ORGA-Lab1/Laboratorio Orga/mips.h
+	"estructuras.h"
+	<stdio.h>
+
+1491174027 source:/home/andres/Desarrollo/ORGA-Lab1/Laboratorio Orga/main.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"estructuras.h"
+	"funciones.h"
+
+1491174027 source:/home/andres/Desarrollo/ORGA-Lab1/Laboratorio Orga/mips.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"estructuras.h"
+	"funciones.h"
+	"fprint.h"
+
