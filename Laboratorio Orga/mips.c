@@ -35,7 +35,7 @@ void add(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //WB
-    program->registers[getIndexRegister(in.r1,program)] = program->registers[getIndexRegister(in.r2,program)] + program->registers[getIndexRegister(in.r3,program)];
+    program->registers[getIndexRegister(in.a1,program)] = program->registers[getIndexRegister(in.a2,program)] + program->registers[getIndexRegister(in.a3,program)];
     fprintf(traza,"%3d",program->PC*4   );
     fprintf(traza," WB  ");
     fprintRegisters(traza,program);
@@ -65,7 +65,7 @@ void sub(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //WB
-    program->registers[getIndexRegister(in.r1,program)] = program->registers[getIndexRegister(in.r2,program)] - program->registers[getIndexRegister(in.r3,program)];
+    program->registers[getIndexRegister(in.a1,program)] = program->registers[getIndexRegister(in.a2,program)] - program->registers[getIndexRegister(in.a3,program)];
     fprintf(traza,"%3d",program->PC*4   );
     fprintf(traza," WB  ");
     fprintRegisters(traza,program);
@@ -95,7 +95,7 @@ void addi(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //WB
-    program->registers[getIndexRegister(in.r1,program)] = program->registers[getIndexRegister(in.r2,program)] + atoi(in.r3);
+    program->registers[getIndexRegister(in.a1,program)] = program->registers[getIndexRegister(in.a2,program)] + atoi(in.a3);
     fprintf(traza,"%3d",program->PC*4   );
     fprintf(traza," WB  ");
     fprintRegisters(traza,program);
@@ -125,7 +125,7 @@ void subi(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //WB
-    program->registers[getIndexRegister(in.r1,program)] = program->registers[getIndexRegister(in.r2,program)] - atoi(in.r3);
+    program->registers[getIndexRegister(in.a1,program)] = program->registers[getIndexRegister(in.a2,program)] - atoi(in.a3);
     fprintf(traza,"%3d",program->PC*4   );
     fprintf(traza," WB  ");
     fprintRegisters(traza,program);
@@ -155,7 +155,7 @@ void mul(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //WB
-    program->registers[getIndexRegister(in.r1,program)] = program->registers[getIndexRegister(in.r2,program)] * program->registers[getIndexRegister(in.r3,program)];
+    program->registers[getIndexRegister(in.a1,program)] = program->registers[getIndexRegister(in.a2,program)] * program->registers[getIndexRegister(in.a3,program)];
     fprintf(traza,"%3d",program->PC*4   );
     fprintf(traza," WB  ");
     fprintRegisters(traza,program);
@@ -185,7 +185,7 @@ void div_m(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //WB
-    program->registers[getIndexRegister(in.r1,program)] = program->registers[getIndexRegister(in.r2,program)] / program->registers[getIndexRegister(in.r3,program)];
+    program->registers[getIndexRegister(in.a1,program)] = program->registers[getIndexRegister(in.a2,program)] / program->registers[getIndexRegister(in.a3,program)];
     fprintf(traza,"%3d",program->PC*4   );
     fprintf(traza," WB  ");
     fprintRegisters(traza,program);
@@ -210,8 +210,8 @@ void beq(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //MEM
-    if(program->registers[getIndexRegister(in.r1,program)]== program->registers[getIndexRegister(in.r2,program)] ){
-        program->PC=getPClabel(in.r3,program);
+    if(program->registers[getIndexRegister(in.a1,program)]== program->registers[getIndexRegister(in.a2,program)] ){
+        program->PC=getPClabel(in.a3,program);
     }
 
     fprintf(traza,"%3d",program->PC*4);
@@ -223,7 +223,7 @@ void beq(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintf(traza," WB  ");
     fprintRegisters(traza,program);
     fprintf(traza,"\n\n");
-    if(program->registers[getIndexRegister(in.r1,program)] == program->registers[getIndexRegister(in.r2,program)] ){
+    if(program->registers[getIndexRegister(in.a1,program)] == program->registers[getIndexRegister(in.a2,program)] ){
         program->PC-=1; //eso es porque siempre aumenta en 1 al final de la instruccion con el -1 se equilibra asi salta a la instruccion correcta
     }
 }
@@ -246,8 +246,8 @@ void blt(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //MEM
-    if(program->registers[getIndexRegister(in.r1,program)] < program->registers[getIndexRegister(in.r2,program)] ){
-        program->PC=getPClabel(in.r3,program);
+    if(program->registers[getIndexRegister(in.a1,program)] < program->registers[getIndexRegister(in.a2,program)] ){
+        program->PC=getPClabel(in.a3,program);
     }
 
     fprintf(traza,"%3d",program->PC*4);
@@ -259,7 +259,7 @@ void blt(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintf(traza," WB  ");
     fprintRegisters(traza,program);
     fprintf(traza,"\n\n");
-    if(program->registers[getIndexRegister(in.r1,program)] < program->registers[getIndexRegister(in.r2,program)] ){
+    if(program->registers[getIndexRegister(in.a1,program)] < program->registers[getIndexRegister(in.a2,program)] ){
         program->PC-=1; //eso es porque siempre aumenta en 1 al final de la instruccion con el -1 se equilibra asi salta a la instruccion correcta
     }
 
@@ -284,9 +284,9 @@ void bgt(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //MEM
-    if(program->registers[getIndexRegister(in.r1,program)] > program->registers[getIndexRegister(in.r2,program)] ){
+    if(program->registers[getIndexRegister(in.a1,program)] > program->registers[getIndexRegister(in.a2,program)] ){
         //printf("%s = %d\n",in.r3,getPClabel(in.r3,program));
-        program->PC=getPClabel(in.r3,program);
+        program->PC=getPClabel(in.a3,program);
     }
 
     fprintf(traza,"%3d",program->PC*4);
@@ -298,7 +298,7 @@ void bgt(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintf(traza," WB  ");
     fprintRegisters(traza,program);
     fprintf(traza,"\n\n");
-    if(program->registers[getIndexRegister(in.r1,program)] > program->registers[getIndexRegister(in.r2,program)] ){
+    if(program->registers[getIndexRegister(in.a1,program)] > program->registers[getIndexRegister(in.a2,program)] ){
         program->PC-=1; //eso es porque siempre aumenta en 1 al final de la instruccion con el -1 se equilibra asi salta a la instruccion correcta
     }
 }
@@ -312,7 +312,7 @@ void jump(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintf(traza,"\n");
     //ID
     //printf("jump: %d\n",getPClabel(in.r1,program));
-    program->PC=getPClabel(in.r1,program);
+    program->PC=getPClabel(in.a1,program);
     fprintf(traza,"%3d",program->PC*4);
     fprintf(traza," ID  ");
     fprintRegisters(traza,program);
@@ -345,7 +345,7 @@ void jal(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     //ID
     //printf("jump: %d\n",getPClabel(in.r1,program));
     int aux = program->PC;
-    program->PC=getPClabel(in.r1,program);
+    program->PC=getPClabel(in.a1,program);
     fprintf(traza,"%3d",program->PC*4);
     fprintf(traza," ID  ");
     fprintRegisters(traza,program);
@@ -398,7 +398,7 @@ void jr(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintf(traza,"\n");
     //WB
     //printf("JR PC: %d\n",program->PC);
-    program->PC=program->registers[getIndexRegister(in.r1,program)];
+    program->PC=program->registers[getIndexRegister(in.a1,program)];
     //printf("JR PC: %d\n",program->PC);
     fprintf(traza,"%3d",program->PC*4   );
     fprintf(traza," WB  ");
@@ -433,7 +433,7 @@ void la(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     //WB
     //int dir = program->registers[getIndexRegister(in.r2,program)]/4;
     //program->registers[getIndexRegister(in.r1,program)] = program->heapMemory[dir];
-    program->registers[getIndexRegister(in.r1,program)] =program->registers[getIndexRegister(in.r2,program)];
+    program->registers[getIndexRegister(in.a1,program)] =program->registers[getIndexRegister(in.a2,program)];
     fprintf(traza,"%3d",program->PC*4   );
     fprintf(traza," WB  ");
     fprintRegisters(traza,program);
@@ -464,18 +464,18 @@ void lw(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //WB
-    if(!strcmp(in.r3,"$sp")){
-        int dir = -program->registers[getIndexRegister(in.r3,program)]/4;
-        int offset = -atoi(in.r2)/4;
+    if(!strcmp(in.a3,"$sp")){
+        int dir = -program->registers[getIndexRegister(in.a3,program)]/4;
+        int offset = -atoi(in.a2)/4;
         dir+=offset;
-        program->registers[getIndexRegister(in.r1,program)] = program->stackMemory[dir];
+        program->registers[getIndexRegister(in.a1,program)] = program->stackMemory[dir];
 
     }
     else{
-        int dir = program->registers[getIndexRegister(in.r3,program)]/4;
-        int offset = atoi(in.r2)/4;
+        int dir = program->registers[getIndexRegister(in.a3,program)]/4;
+        int offset = atoi(in.a2)/4;
         dir+=offset;
-        program->registers[getIndexRegister(in.r1,program)] = program->heapMemory[dir];
+        program->registers[getIndexRegister(in.a1,program)] = program->heapMemory[dir];
 
     }
 
@@ -508,19 +508,19 @@ void sw(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n");
     //WB
-    if(!strcmp(in.r3,"$sp")){
-        int dir = -program->registers[getIndexRegister(in.r3,program)]/4;
-        int offset = -atoi(in.r2)/4;
+    if(!strcmp(in.a3,"$sp")){
+        int dir = -program->registers[getIndexRegister(in.a3,program)]/4;
+        int offset = -atoi(in.a2)/4;
         dir+=offset;
 
-        program->stackMemory[dir]= program->registers[getIndexRegister(in.r1,program)];
+        program->stackMemory[dir]= program->registers[getIndexRegister(in.a1,program)];
 
     }
     else{
-        int dir = program->registers[getIndexRegister(in.r3,program)]/4;
-        int offset = atoi(in.r2)/4;
+        int dir = program->registers[getIndexRegister(in.a3,program)]/4;
+        int offset = atoi(in.a2)/4;
         dir+=offset;
-        program->heapMemory[dir]=program->registers[getIndexRegister(in.r1,program)];
+        program->heapMemory[dir]=program->registers[getIndexRegister(in.a1,program)];
 
     }
     //program->heapMemory[0];

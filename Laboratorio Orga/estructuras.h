@@ -2,11 +2,11 @@
 #define _STRUCTS_H_
 
 typedef struct Instruction{
-	int r;
+	int arguments;
 	char function[30];
-	char r1[30];
-	char r2[30];
-	char r3[30];
+	char a1[30];
+	char a2[30];
+	char a3[30];
 
 }Instruction;
 

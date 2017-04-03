@@ -19,14 +19,14 @@ int existsFile(char* filename) {
 }
 
 void showInstruction(Instruction instruction){
-    if (instruction.r == 3){
-		printf("%s %s %s %s\n",instruction.function,instruction.r1,instruction.r2,instruction.r3 );
+    if (instruction.arguments == 3){
+		printf("%s %s %s %s\n",instruction.function,instruction.a1,instruction.a2,instruction.a3 );
     }
-    if (instruction.r == 2){
-        printf("%s %s %s\n",instruction.function,instruction.r1,instruction.r2);
+    if (instruction.arguments == 2){
+        printf("%s %s %s\n",instruction.function,instruction.a1,instruction.a2);
     }
-    if (instruction.r == 1){
-        printf("%s %s\n",instruction.function,instruction.r1);
+    if (instruction.arguments == 1){
+        printf("%s %s\n",instruction.function,instruction.a1);
     }
 }
 void showRegisters(Program* program){
@@ -45,9 +45,9 @@ void showLabels(Program* program){
 
 void instructionInit(Instruction* ins){
 	memset(ins->function,0,30);
-	memset(ins->r1,0,30);
-	memset(ins->r2,0,30);
-	memset(ins->r3,0,30);
+	memset(ins->a1,0,30);
+	memset(ins->a2,0,30);
+	memset(ins->a3,0,30);
 }
 Program* programInit(char *filename){
 
@@ -115,8 +115,8 @@ Program* programInit(char *filename){
 		){
 			instructionInit(&program->instructions[program->counterInstruction]);
 			strcpy(program->instructions[program->counterInstruction].function , buffer);
-			fscanf(file," %[^','], %[^','], %s\n",program->instructions[program->counterInstruction].r1,program->instructions[program->counterInstruction].r2,program->instructions[program->counterInstruction].r3);
-			program->instructions[program->counterInstruction].r = 3;
+			fscanf(file," %[^','], %[^','], %s\n",program->instructions[program->counterInstruction].a1,program->instructions[program->counterInstruction].a2,program->instructions[program->counterInstruction].a3);
+			program->instructions[program->counterInstruction].arguments = 3;
 			//showInstruction(program->instructions[program->counterInstruction]);
 
 			program->counterInstruction++;
@@ -129,8 +129,8 @@ Program* programInit(char *filename){
 		){
 			instructionInit(&program->instructions[program->counterInstruction]);
 			strcpy(program->instructions[program->counterInstruction].function , buffer);
-			fscanf(file," %[^','], %[^'('](%[^')']",program->instructions[program->counterInstruction].r1,program->instructions[program->counterInstruction].r2,program->instructions[program->counterInstruction].r3);
-			program->instructions[program->counterInstruction].r = 3;
+			fscanf(file," %[^','], %[^'('](%[^')']",program->instructions[program->counterInstruction].a1,program->instructions[program->counterInstruction].a2,program->instructions[program->counterInstruction].a3);
+			program->instructions[program->counterInstruction].arguments = 3;
 			//showInstruction(program->instructions[program->counterInstruction]);
 
 			program->counterInstruction++;
@@ -141,8 +141,8 @@ Program* programInit(char *filename){
 		){
 			instructionInit(&program->instructions[program->counterInstruction]);
 			strcpy(program->instructions[program->counterInstruction].function , buffer);
-			fscanf(file," %[^','], (%[^')']",program->instructions[program->counterInstruction].r1,program->instructions[program->counterInstruction].r2);
-			program->instructions[program->counterInstruction].r = 2;
+			fscanf(file," %[^','], (%[^')']",program->instructions[program->counterInstruction].a1,program->instructions[program->counterInstruction].a2);
+			program->instructions[program->counterInstruction].arguments = 2;
 			//showInstruction(program->instructions[program->counterInstruction]);
 
 			program->counterInstruction++;
@@ -155,8 +155,8 @@ Program* programInit(char *filename){
 		){
 			instructionInit(&program->instructions[program->counterInstruction]);
 			strcpy(program->instructions[program->counterInstruction].function , buffer);
-			fscanf(file," %s\n",program->instructions[program->counterInstruction].r1);
-			program->instructions[program->counterInstruction].r = 1;
+			fscanf(file," %s\n",program->instructions[program->counterInstruction].a1);
+			program->instructions[program->counterInstruction].arguments = 1;
 			//showInstruction(program->instructions[program->counterInstruction]);
 
 			program->counterInstruction++;

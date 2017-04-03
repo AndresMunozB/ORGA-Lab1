@@ -20,25 +20,25 @@ void fprintInstruction(FILE* archivo,Instruction in){
 		!strcmp(in.function,"blt") ||
 		!strcmp(in.function,"bgt")
 		){
-            fprintf(archivo,"%s %s, %s, %s:\n", in.function,in.r1,in.r2,in.r3);
+            fprintf(archivo,"%s %s, %s, %s:\n", in.function,in.a1,in.a2,in.a3);
     }
     else if (
 		!strcmp(in.function,"lw") ||
 		!strcmp(in.function,"sw")
 		){
-		    fprintf(archivo,"%s %s, %s(%s):\n", in.function,in.r1,in.r2,in.r3);
+		    fprintf(archivo,"%s %s, %s(%s):\n", in.function,in.a1,in.a2,in.a3);
     }
     else if (
 		!strcmp(in.function,"la")
 		){
-		    fprintf(archivo,"%s %s, (%s):\n", in.function,in.r1,in.r2);
+		    fprintf(archivo,"%s %s, (%s):\n", in.function,in.a1,in.a2);
     }
     else if (
 		!strcmp(in.function,"j") ||
 		!strcmp(in.function,"jal") ||
 		!strcmp(in.function,"jr")
 		){
-		    fprintf(archivo,"%s %s:\n", in.function,in.r1);
+		    fprintf(archivo,"%s %s:\n", in.function,in.a1);
     }
 }
 void fprintRegisters(FILE* archivo, Program* program){
