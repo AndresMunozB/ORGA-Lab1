@@ -32,6 +32,10 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="estructuras.h" />
+		<Unit filename="fprint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="fprint.h" />
 		<Unit filename="funciones.c">
 			<Option compilerVar="CC" />
 		</Unit>

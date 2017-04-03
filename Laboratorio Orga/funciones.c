@@ -1,42 +1,54 @@
-#include "estructuras.h"
-#include "mips.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "estructuras.h"
+#include "mips.h"
+#include "fprint.h"
+
+int existsFile(char* filename) {
+	FILE* f = NULL;
+	f = fopen(filename,"r");
+	if (f == NULL)
+		return 0;
+	else {
+		fclose(f);
+		return 1;
+	}
+	return 0;
+}
 
 void showInstruction(Instruction instruction){
     if (instruction.r == 3){
 		printf("%s %s %s %s\n",instruction.function,instruction.r1,instruction.r2,instruction.r3 );
-		/*printf("%s: %d\n",instruction.function,(int)strlen(instruction.function));
-		printf("%s: %d\n",instruction.r1,(int)strlen(instruction.r1));
-		printf("%s: %d\n",instruction.r2,(int)strlen(instruction.r2));
-		printf("%s: %d\n",instruction.r3,(int)strlen(instruction.r3));*/
-
     }
     if (instruction.r == 2){
         printf("%s %s %s\n",instruction.function,instruction.r1,instruction.r2);
-        /*printf("%s: %d\n",instruction.function,(int)strlen(instruction.function));
-		printf("%s: %d\n",instruction.r1,(int)strlen(instruction.r1));
-		printf("%s: %d\n",instruction.r2,(int)strlen(instruction.r2));*/
-
-
     }
     if (instruction.r == 1){
         printf("%s %s\n",instruction.function,instruction.r1);
-        /*printf("%s: %d\n",instruction.function,(int)strlen(instruction.function));
-		printf("%s: %d\n",instruction.r1,(int)strlen(instruction.r1));*/
     }
-
-
-	// Hola <3
 }
+void showRegisters(Program* program){
+    int i;
+    for (i=0;i<32;i++){
+        printf(" %3d ", program->registers[i]);
+    }
+}
+void showLabels(Program* program){
+    int i;
+    for (i=0;i<program->counterLabel;i++){
+        printf("%s %d\n",program->labels[i].name,program->labels[i].PC);
+
+    }
+}
+
 void instructionInit(Instruction* ins){
 	memset(ins->function,0,30);
 	memset(ins->r1,0,30);
 	memset(ins->r2,0,30);
 	memset(ins->r3,0,30);
 }
-
 Program* programInit(char *filename){
 
 	Program *program=(Program*)malloc(sizeof(Program));
@@ -181,66 +193,15 @@ int getIndexRegister(char *strRegister,Program* program ){
     }
     return -1;
 }
-void fprintInstruction(FILE* traza,Instruction in){
-    if (
-		!strcmp(in.function,"add") ||
-		!strcmp(in.function,"addi") ||
-		!strcmp(in.function,"sub") ||
-		!strcmp(in.function,"subi") ||
-		!strcmp(in.function,"mul") ||
-		!strcmp(in.function,"div") ||
-		!strcmp(in.function,"beq") ||
-		!strcmp(in.function,"blt") ||
-		!strcmp(in.function,"bgt")
-		){
-            fprintf(traza,"%s %s, %s, %s:\n", in.function,in.r1,in.r2,in.r3);
-    }
-    else if (
-		!strcmp(in.function,"lw") ||
-		!strcmp(in.function,"sw")
-		){
-		    fprintf(traza,"%s %s, %s(%s):\n", in.function,in.r1,in.r2,in.r3);
-    }
-    else if (
-		!strcmp(in.function,"la")
-		){
-		    fprintf(traza,"%s %s, (%s):\n", in.function,in.r1,in.r2);
-    }
-    else if (
-		!strcmp(in.function,"j") ||
-		!strcmp(in.function,"jal") ||
-		!strcmp(in.function,"jr")
-		){
-		    fprintf(traza,"%s %s:\n", in.function,in.r1);
-    }
-}
-void fprintRegisters(FILE* traza, Program* program){
+int getPClabel(char* label,Program* program){
     int i;
-    for (i=0;i<32;i++){
-        fprintf(traza," %3d ", program->registers[i]);
+    for (i=0;i<program->counterLabel;i++){
+        //printf("%s-%s\n",program->labels[i].name,label);
+        if (! strcmp(program->labels[i].name, label)){
+        	return program->labels[i].PC;
+        }
     }
-}
-void fprintTitle(FILE* traza, Program* program){
-    fprintf(traza," PC FASE");
-    fprintf(traza," %s",program->nameRegisters[0]);
-    fprintf(traza," %s",program->nameRegisters[1]);
-    int i;
-    for (i=2;i<32;i++){
-        fprintf(traza,"  %s",program->nameRegisters[i]);
-    }
-    fprintf(traza,"\n");
-}
-void fprintLinesControl(FILE* linesControl, Program* program){
-	fprintf(linesControl,"RegDst:  %c\n",program->linesControl[0]);
-    fprintf(linesControl,"Jump:    %c\n",program->linesControl[1]);
-    fprintf(linesControl,"Branch:  %c\n",program->linesControl[2]);
-    fprintf(linesControl,"MemRead: %c\n",program->linesControl[3]);
-    fprintf(linesControl,"MemToReg:%c\n",program->linesControl[4]);
-    fprintf(linesControl,"ALUOP1:  %c\n",program->linesControl[5]);
-    fprintf(linesControl,"ALUOP2:  %c\n",program->linesControl[6]);
-    fprintf(linesControl,"MemWrite:%c\n",program->linesControl[7]);
-    fprintf(linesControl,"ALUSrc:  %c\n",program->linesControl[8]);
-    fprintf(linesControl,"RegWrite:%c\n",program->linesControl[9]);
+    return -1;
 }
 void setLinesControl(Instruction in,Program* program){
      if (
@@ -341,16 +302,9 @@ void setLinesControl(Instruction in,Program* program){
     }
 }
 
-void printRegisters(Program* program){
-    int i;
-    for (i=0;i<32;i++){
-        printf(" %3d ", program->registers[i]);
-    }
-}
-
-void exProgram(Program* program){
-    FILE* linesControl = fopen("Lines Control.txt","w");
-    FILE* traza = fopen("Traza.txt","w");
+void exProgram(Program* program,char* nameFileLC, char* nameFileT){
+    FILE* linesControl = fopen(nameFileLC,"w");
+    FILE* traza = fopen(nameFileT,"w");
 
 
     for (program->PC=0;program->PC<=program->counterInstruction;program->PC++){
@@ -523,23 +477,6 @@ void exProgram(Program* program){
     }
     fclose(linesControl);
     fclose(traza);
-}
-int getPClabel(char* label,Program* program){
-    int i;
-    for (i=0;i<program->counterLabel;i++){
-        //printf("%s-%s\n",program->labels[i].name,label);
-        if (! strcmp(program->labels[i].name, label)){
-        	return program->labels[i].PC;
-        }
-    }
-    return -1;
-}
-void showLabels(Program* program){
-    int i;
-    for (i=0;i<program->counterLabel;i++){
-        printf("%s %d\n",program->labels[i].name,program->labels[i].PC);
-
-    }
 }
 
 

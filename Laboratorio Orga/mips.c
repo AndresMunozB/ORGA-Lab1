@@ -3,7 +3,10 @@
 #include <string.h>
 #include "estructuras.h"
 #include "funciones.h"
+#include "fprint.h"
 
+#ifndef _FUNCIONES_MIPS
+#define _FUNCIONES_MIPS
 void add(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
 
 
@@ -529,3 +532,4 @@ void sw(Instruction in ,Program* program,FILE* linesControl,FILE* traza){
     fprintRegisters(traza,program);
     fprintf(traza,"\n\n");
 }
+#endif

@@ -17,7 +17,7 @@
 1490752524 /home/andres/Desarrollo/Proyecto orga lab 1/Laboratorio Orga/funciones.h
 	"estructuras.h"
 
-1490839864 source:c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\main.c
+1491184328 source:c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\main.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -26,24 +26,36 @@
 
 1490838482 c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\estructuras.h
 
-1490835017 c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\funciones.h
+1491187689 c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\funciones.h
 	"estructuras.h"
 
-1490849096 source:c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\funciones.c
-	"estructuras.h"
-	"mips.h"
+1491187771 source:c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\funciones.c
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
+	"estructuras.h"
+	"mips.h"
+	"fprint.h"
 
 1490839847 c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\mips.h
 	"estructuras.h"
 	<stdio.h>
 
-1490849096 source:c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\mips.c
+1491187688 source:c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\mips.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"estructuras.h"
 	"funciones.h"
+	"fprint.h"
+
+1491187722 source:c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\fprint.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"estructuras.h"
+	"funciones.h"
+	"fprint.h"
+
+1491187686 c:\users\andres\desktop\programacion\orga-lab1\laboratorio orga\fprint.h
 
